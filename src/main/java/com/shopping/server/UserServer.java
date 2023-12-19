@@ -26,6 +26,7 @@ public class UserServer {
     public void startServer() {
         try {
             server = getServer();
+            LOGGER.info("Server started on port: " + PORT_NUMBER);
             addShutdownHook();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Server could not start", e);
@@ -58,10 +59,8 @@ public class UserServer {
             try {
                 UserServer.this.stopServer();
             } catch (InterruptedException e) {
-                LOGGER.log(Level.SEVERE, "Server shutdown", e);
+                LOGGER.log(Level.SEVERE, "Server shutdown interrupted", e);
             }
         }));
     }
-
-
 }
