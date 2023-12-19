@@ -10,6 +10,8 @@ import io.grpc.stub.StreamObserver;
 
 public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
 
+    private final UserDao userDao = new UserDao();
+
     @Override
     public void getUserDetails(UserRequest request, StreamObserver<UserResponse> responseObserver) {
         User user = getUser(request);
@@ -19,7 +21,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
     }
 
     private User getUser(UserRequest request) {
-        return new UserDao().getDetails(request.getUsername());
+        return userDao.getDetails(request.getUsername());
     }
 
     private UserResponse buildUserResponse(User user) {
