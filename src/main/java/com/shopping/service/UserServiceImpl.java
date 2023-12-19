@@ -41,6 +41,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
     }
 
     private OrderClient getOrderClient() {
+        LOGGER.info("Creating a channel and calling the Order Client");
         ManagedChannel channel = ManagedChannelBuilder
                 .forTarget(LOCALHOST_50052)
                 .usePlaintext()
